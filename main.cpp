@@ -25,13 +25,6 @@
 
 #include "connectdialog.h"
 
-#include <signal.h>
-
-void sighandler(int signum)
-{
-    printf("Received %d\n",signum);
-}
-
 int main(int argc, char *argv[])
 {
     QApplication app(argc,argv);
@@ -43,12 +36,6 @@ int main(int argc, char *argv[])
     ConnectDialog d;
     d.setWindowIcon(QIcon("/usr/share/icons/hicolor/32x32/apps/kppp.png"));
     d.show();
-
-    struct sigaction sa;
-    struct sigaction old;
-    sa.sa_handler = sighandler;
-    sa.sa_flags = 0;
-    sigaction(SIGTERM,&sa,&old);
 
     return app.exec();
 }
