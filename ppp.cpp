@@ -7,7 +7,5 @@ PPP::PPP(QObject *parent)
 
 void PPP::setupChildProcess()
 {
-#ifdef Q_OS_UNIX
     setsid();
-#endif
 }
