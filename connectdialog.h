@@ -28,6 +28,8 @@
 
 #include "ui_connectdialog.h"
 
+#include "ppp.h"
+
 class ConnectDialog : public QDialog
 {
     Q_OBJECT
@@ -54,7 +56,7 @@ class ConnectDialog : public QDialog
         QTime time;
         QTimer *timer;
         QTimer *trayTimer;
-        QProcess *ppp;
+        PPP *ppp;
         Ui::ConnectDialog ui;
 
         QSystemTrayIcon trayIcon;

@@ -42,7 +42,7 @@ ConnectDialog::ConnectDialog(QWidget *parent)
     restoreGeometry(settings.value("Geometry").toByteArray());
     settings.endGroup();
 
-    ppp = new QProcess(this);
+    ppp = new PPP(this);
     //ppp->closeReadChannel(QProcess::StandardOutput);
     //ppp->closeReadChannel(QProcess::StandardError);
 
@@ -152,6 +152,7 @@ void ConnectDialog::close()
 
 void ConnectDialog::closeEvent(QCloseEvent *event)
 {
+    Q_UNUSED(event);
     QSettings settings("QPon","qpon");
     settings.beginGroup("Main");
     settings.setValue("Geometry",saveGeometry());
