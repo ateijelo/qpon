@@ -1,4 +1,4 @@
-// This file is part of QPon, a simple interface Qt interface
+// This file is part of QPon, a simple Qt interface
 // for the pon/poff ppp utilities.
 //
 // Copyright (C) 2007 Andy Teijelo <ateijelo@uh.cu>

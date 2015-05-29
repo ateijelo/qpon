@@ -1,4 +1,4 @@
-// This file is part of QPon, a simple interface Qt interface
+// This file is part of QPon, a simple Qt interface
 // for the pon/poff ppp utilities.
 //
 // Copyright (C) 2007 Andy Teijelo <ateijelo@uh.cu>
@@ -48,10 +48,12 @@ ConnectDialog::ConnectDialog(QWidget *parent)
 
     for (int i=0; i<2; i++)
         for (int o=0; o<2; o++)
-            trayIcons[i][o].addFile(QString("traffic%1%2.png").arg(i).arg(o));
+            trayIcons[i][o].addFile(QString(":/traffic%1%2.png").arg(i).arg(o));
 
     trayIcon.setIcon(trayIcons[0][0]);
     //trayIcon.show();
+
+    connect(&trayIcon,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this,SLOT(raise()));
 
     timer = new QTimer();
     timer->setSingleShot(true);
@@ -247,28 +249,33 @@ void ConnectDialog::setState(State s)
             ui.button->setText(tr(" &Connect "));
             ui.button->setEnabled(true);
             ui.peersComboBox->setEnabled(true);
+            setWindowTitle("Connection");
             state=s;
             break;
         case Connecting:
             ui.statusLabel->setText(tr("<font color=\"#dd4400\"><b>Connecting...</b></font>"));
             ui.button->setText(tr(" &Disconnect "));
             ui.peersComboBox->setEnabled(false);
+            setWindowTitle("Connecting...");
             state=s;
             timer->start(1000);
             break;
         case Connected:
             ui.statusLabel->setText(tr("<font color=\"#00bb00\"><b>Connected %1</b></font>").arg(connectedTime()));
+            setWindowTitle(connectedTime() + " Connected");
             state=s;
             timer->start(200);
             break;
         case Retrying:
             ui.statusLabel->setText(tr("<font color=\"#dd0000\"><b>Error, retrying...</b></font>"));
+            setWindowTitle("Connecting...");
             state=s;
             timer->start(2000);
             break;
         case Disconnecting:
             ui.button->setText(tr(" Disconnecting... "));
             ui.button->setEnabled(false);
+            setWindowTitle("Disconnecting...");
             state=s;
             break;
     }

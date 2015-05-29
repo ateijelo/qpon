@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>traffic11.png</file>
+        <file>traffic10.png</file>
+        <file>traffic01.png</file>
+        <file>traffic00.png</file>
+        <file>disconnect.wav</file>
+        <file>connect.wav</file>
+        <file>phone.png</file>
+    </qresource>
+</RCC>
